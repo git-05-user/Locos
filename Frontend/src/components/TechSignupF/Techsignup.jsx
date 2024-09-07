@@ -58,7 +58,12 @@ export const Techsignup = () => {
         navigate('/techlogin') 
       }) 
       .catch((error) => { 
+        if(error.response && error.response.status === 404 ){
+          alert(error.response.data.message);
+        }else{
         console.log('Unable to register user') 
+        alert('An error occurred while registering');
+        }
       }) 
   }
   return (

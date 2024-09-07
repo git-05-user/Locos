@@ -16,6 +16,10 @@ dotenv.config();
 router.post('/userregister', async(req,res)=>{
     try{
         const {email,password,address,pincode} = req.body
+        const emailCheck = await UserDetail.findOne({email})
+        if(emailCheck){
+           return res.status(404).json({message:'email address is already exists'})
+        }
         const newUser = new UserDetail({
             email,password,address,pincode
         })
@@ -61,6 +65,10 @@ router.post('/userlogin', async(req,res)=>{
 router.post('/servicerregister', async(req,res)=>{
     try{
         const {email,password,phoneno,services,address,pincode} = req.body;
+        const emailCheck = await ServiceProvider.findOne({email})
+        if(emailCheck){
+            return res.status(404).json({message:'email address is already exists'})
+        }
         const newServicer = new ServiceProvider({
             email,password,phoneno,services,address,pincode
         })
@@ -109,6 +117,7 @@ try{
     if(!user){
         return res.status(404).json({message:'No such email in DB'});
     }
+
     const Transport=nodemailer.createTransport(
         {
             service:"gmail",
@@ -118,6 +127,8 @@ try{
             }
         }
     );
+
+    //sending mail to requested users 
         const send={
             from:`Loco's ${process.env.MAILID}`,
             to:`${email}`,
@@ -180,6 +191,8 @@ try{
         }
     }
     );
+
+    // sending a mail to requested servicer
         const sender={
             from:`Loco's ${process.env.MAILID}`,
             to:`${email}`,
