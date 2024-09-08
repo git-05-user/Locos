@@ -11,8 +11,7 @@ export const Home = () => {
       <header className="container">
         <nav className="navbar">
           <h3 className="logo">
-            <i class="fa-solid fa-gears"></i> LO<span>COs</span>
-          </h3>
+          <i class="fa-solid fa-screwdriver-wrench"></i> LOCOS</h3>
           <ul className="navbar-compo">
             <li>
               <a href="#" className="navcompo">
@@ -35,12 +34,6 @@ export const Home = () => {
                 Contact us
               </a>
             </li>
-            {/* <li id="profile">
-              <Link to="/userdashboard"><i
-                class="fa-solid fa-circle-user"
-              ></i></Link>
-            </li> */}
-
             <li>
               <Link to="/userlogin">
                 <button id="login-btn">Login</button>
