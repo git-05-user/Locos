@@ -72,6 +72,10 @@ export const Techsignup = () => {
         <div className="partner-main-container">
           <form onSubmit={handleRegister} className="partnersignupform">
             <h1>Create an Account</h1>
+            <label htmlFor="">UserName</label>
+            <br />
+            <input type="text" required/> {/* Modified */}
+            <br />
             <label htmlFor="">Email Address</label>
             <br />
             <input type="text" value={email} onChange={(e)=>setEmail(e.target.value)} required />

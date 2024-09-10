@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./Userdashboard.css";
 export const Userdashboard = () => {
+  const [bookedServices, setBookedServices] = useState([]); // New state for booked services
   const [currentSection, setCurrentSection] = useState("Dashboard");
   const [personalInfo, setPersonalInfo] = useState({
     name: "CharanGuru",
@@ -19,6 +20,9 @@ export const Userdashboard = () => {
     // You can add logic here to save the personal info to a database or local storage
     setUsername(personalInfo.name);
     console.log(personalInfo);
+  };
+  const handleBookService = (service) => {
+    setBookedServices([...bookedServices, service]);
   };
   const services = [
     {
@@ -89,28 +93,36 @@ export const Userdashboard = () => {
             <div className="personal-details">
               <h2>Personal Details</h2>
               <form>
-                <label >Name</label>
-                <input type="text" value={personalInfo.name}
-                onChange={handlePersonalInfoChange} 
-                /> <br />
-                <label >Email</label>
-                <input type="mail" value={personalInfo.email} /><br />
-                <label className = "addr">Address</label>
-                <textarea  value={personalInfo.address}></textarea>
-                <label >Pincode</label>
-                <input type="text" id="pinc" value={personalInfo.pincode}/>
+                <label>Name</label>
+                <input
+                  type="text"
+                  value={personalInfo.name}
+                  onChange={handlePersonalInfoChange}
+                />{" "}
+                <br />
+                <label>Email</label>
+                <input type="mail" value={personalInfo.email} />
+                <br />
+                <label className="addr">Address</label>
+                <textarea value={personalInfo.address}></textarea>
+                <label>Pincode</label>
+                <input type="text" id="pinc" value={personalInfo.pincode} />
               </form>
               <button onClick={handleSavePersonalInfo}>Save Changes</button>
             </div>
             <div className="booked-services">
               <h2>Ongoing Works</h2>
-              
-            </div>
-            <div className="history">
-              <h3>History</h3>
-                <div className="historycon">
-                  <ul></ul>
-                </div>
+              <div className="ondiv">
+              <ul>
+                {bookedServices.map((service, index) => (
+                  <li><h3 key={index}>{service.title}</h3>
+                  {service.description}
+                  <p>Technician</p>
+                  <p>- Krish</p>
+                  <button>Finished</button></li>
+                ))}
+              </ul>
+              </div>
             </div>
           </>
         );
@@ -123,7 +135,9 @@ export const Userdashboard = () => {
                   <h2>{service.title}</h2>
                   <p>{service.description}</p>
                   <Link to="">
-                    <button >Book Now</button>
+                    <button onClick={() => handleBookService(service)}>
+                      Book Now
+                    </button>
                   </Link>
                 </div>
               ))}

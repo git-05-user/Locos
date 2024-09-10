@@ -39,6 +39,11 @@ export const Home = () => {
                 <button id="login-btn">Login</button>
               </Link>
             </li>
+            {/* <li id="profile">
+              <Link to="/userdashboard"><i
+                class="fa-solid fa-circle-user"
+              ></i></Link>
+            </li>  */}
           </ul>
         </nav>
       </header>

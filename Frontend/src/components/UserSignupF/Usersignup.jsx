@@ -70,6 +70,10 @@ export const Usersignup = () => {
           <div className="main-container">
           <form onSubmit={handleRegister} className="signupform">
             <h1>Create an Account</h1>
+            <label htmlFor="">UserName</label>
+            <br />
+            <input type="text" required/> {/* Modified */}
+            <br />
             <label htmlFor="">Email Address</label>
             <br />
             <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} required/>
