@@ -27,6 +27,7 @@ function App() {
 
             <Route path="/userdashboard" element={<Userdashboard/>}/>
             <Route path="/techdashboard" element={<Techdashboard/>}/>
+
       </Routes>
    </>
   )
