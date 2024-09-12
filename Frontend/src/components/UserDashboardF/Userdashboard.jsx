@@ -25,8 +25,8 @@ export const Userdashboard = () => {
     setBookedServices([...bookedServices, service]);
   };
   const [selectedService, setSelectedService] = useState("All Services"); // New state for selected service
-  const [selectedLocation, setSelectedLocation] = useState("Default"); // New state for selected location
-  const [selectedPriceFilter, setSelectedPriceFilter] = useState("Default"); // New state for selected price filter
+  const [selectedLocation, setSelectedLocation] = useState("Default");
+  const [selectedRating, setSelectedRating ] = useState("Default");
   const [workers, setWorkers] = useState([
     // Sample worker data
     {
@@ -34,350 +34,350 @@ export const Userdashboard = () => {
       name: "Susan Jackson",
       service: "System",
       location: "Pune",
-      price: 1009,
+      rating: 4.9,
     },
     {
       id: 2,
       name: "Linda Anderson",
       service: "RO",
       location: "Coimbatore",
-      price: 1108,
+      rating: 4.8,
     },
     {
       id: 3,
       name: "Robert Brown",
       service: "Cleaning",
       location: "Chennai",
-      price: 1927,
+      rating: 4.7,
     },
     {
       id: 4,
       name: "Linda Anderson",
       service: "Plumbing",
       location: "Ahmedabad",
-      price: 322,
+      rating: 4.2,
     },
     {
       id: 5,
       name: "Laura Wilson",
       service: "Electrical",
       location: "Delhi",
-      price: 1991,
+      rating: 4.1,
     },
     {
       id: 6,
       name: "Emily Davis",
       service: "System",
       location: "Mumbai",
-      price: 1102,
+      rating: 4.2,
     },
     {
       id: 7,
       name: "John Doe",
       service: "Plumbing",
       location: "Delhi",
-      price: 1704,
+      rating: 4.4,
     },
     {
       id: 8,
       name: "David Miller",
       service: "Washing Machine",
       location: "Madurai",
-      price: 538,
+      rating: 4.8,
     },
     {
       id: 9,
       name: "Laura Wilson",
       service: "AC",
       location: "Madurai",
-      price: 1818,
+      rating: 4.8,
     },
     {
       id: 10,
       name: "Laura Wilson",
       service: "Cleaning",
       location: "Kolkata",
-      price: 875,
+      rating: 4.5,
     },
     {
       id: 11,
       name: "Michael Johnson",
       service: "Electrical",
       location: "Hyderabad",
-      price: 502,
+      rating: 4.2,
     },
     {
       id: 12,
       name: "John Doe",
       service: "RO",
       location: "Bangalore",
-      price: 866,
+      rating: 4.6,
     },
     {
       id: 13,
       name: "Linda Anderson",
       service: "Installation",
       location: "Coimbatore",
-      price: 767,
+      rating: 4.7,
     },
     {
       id: 14,
       name: "Jane Smith",
       service: "System",
       location: "Chennai",
-      price: 331,
+      rating: 4.1,
     },
     {
       id: 15,
       name: "Linda Anderson",
       service: "Electrical",
       location: "Hyderabad",
-      price: 1367,
+      rating: 4.7,
     },
     {
       id: 16,
       name: "Laura Wilson",
       service: "System",
       location: "Delhi",
-      price: 430,
+      rating: 4.0,
     },
     {
       id: 17,
       name: "Susan Jackson",
       service: "Maintenance",
       location: "Chennai",
-      price: 686,
+      rating: 4.6,
     },
     {
       id: 18,
       name: "John Doe",
       service: "RO",
       location: "Kolkata",
-      price: 617,
+      rating: 4.9,
     },
     {
       id: 19,
       name: "Robert Brown",
       service: "Television",
       location: "Bangalore",
-      price: 575,
+      rating: 4.8,
     },
     {
       id: 20,
       name: "Linda Anderson",
       service: "Maintenance",
       location: "Hyderabad",
-      price: 389,
+      rating: 4.0,
     },
     {
       id: 21,
       name: "Michael Johnson",
       service: "Installation",
       location: "Delhi",
-      price: 1395,
+      rating: 4.1,
     },
     {
       id: 22,
       name: "David Miller",
       service: "Installation",
       location: "Pune",
-      price: 1986,
+      rating: 4.3,
     },
     {
       id: 23,
       name: "John Doe",
       service: "Plumbing",
       location: "Mumbai",
-      price: 1674,
+      rating: 4.5,
     },
     {
       id: 24,
       name: "Linda Anderson",
       service: "Washing Machine",
       location: "Hyderabad",
-      price: 300,
+      rating: 4.1,
     },
     {
       id: 25,
       name: "Robert Brown",
       service: "Cleaning",
       location: "Bangalore",
-      price: 1632,
+      rating: 4.0,
     },
     {
       id: 26,
       name: "Emily Davis",
       service: "RO",
       location: "Madurai",
-      price: 465,
+      rating: 4.7,
     },
     {
       id: 27,
       name: "Mark Taylor",
       service: "Washing Machine",
       location: "Pune",
-      price: 1467,
+      rating: 4.9,
     },
     {
       id: 28,
       name: "Michael Johnson",
       service: "Washing Machine",
       location: "Delhi",
-      price: 360,
+      rating: 4.9,
     },
     {
       id: 29,
       name: "Linda Anderson",
       service: "AC",
       location: "Bangalore",
-      price: 1131,
+      rating: 4.1,
     },
     {
       id: 30,
       name: "Laura Wilson",
       service: "Plumbing",
       location: "Ahmedabad",
-      price: 1612,
+      rating: 4.6,
     },
     {
       id: 31,
       name: "Susan Jackson",
       service: "Television",
       location: "Coimbatore",
-      price: 847,
+      rating: 4.1,
     },
     {
       id: 32,
       name: "David Miller",
       service: "Television",
       location: "Madurai",
-      price: 423,
+      rating: 4.2,
     },
     {
       id: 33,
       name: "John Doe",
       service: "Electrical",
       location: "Hyderabad",
-      price: 438,
+      rating: 4.5,
     },
     {
       id: 34,
       name: "Michael Johnson",
       service: "Television",
       location: "Mumbai",
-      price: 596,
+      rating: 4.3,
     },
     {
       id: 35,
       name: "Susan Jackson",
       service: "Maintenance",
       location: "Pune",
-      price: 613,
+      rating: 4.2,
     },
     {
       id: 36,
       name: "Michael Johnson",
       service: "Maintenance",
       location: "Ahmedabad",
-      price: 379,
+      rating: 4.8,
     },
     {
       id: 37,
       name: "John Doe",
       service: "Installation",
       location: "Coimbatore",
-      price: 1873,
+      rating: 4.3,
     },
     {
       id: 38,
       name: "Laura Wilson",
       service: "Washing Machine",
       location: "Kolkata",
-      price: 819,
+      rating: 4.8,
     },
     {
       id: 39,
       name: "David Miller",
       service: "Cleaning",
       location: "Kolkata",
-      price: 1163,
+      rating: 4.9,
     },
     {
       id: 40,
       name: "Jane Smith",
       service: "Plumbing",
       location: "Ahmedabad",
-      price: 486,
+      rating: 4.2,
     },
     {
       id: 41,
       name: "Laura Wilson",
       service: "RO",
       location: "Chennai",
-      price: 374,
+      rating: 4.0,
     },
     {
       id: 42,
       name: "Linda Anderson",
       service: "RO",
       location: "Mumbai",
-      price: 754,
+      rating: 4.1,
     },
     {
       id: 43,
       name: "Emily Davis",
       service: "Plumbing",
       location: "Chennai",
-      price: 956,
+      rating: 4.0,
     },
     {
       id: 44,
       name: "Michael Johnson",
       service: "Washing Machine",
       location: "Kolkata",
-      price: 509,
+      rating: 3.9,
     },
     {
       id: 45,
       name: "Susan Jackson",
       service: "RO",
       location: "Coimbatore",
-      price: 1177,
+      rating: 4.1,
     },
     {
       id: 46,
       name: "Mark Taylor",
       service: "AC",
       location: "Mumbai",
-      price: 864,
+      rating: 4.0,
     },
     {
       id: 47,
       name: "Robert Brown",
       service: "Plumbing",
       location: "Mumbai",
-      price: 1887,
+      rating: 4.1,
     },
     {
       id: 48,
       name: "Laura Wilson",
       service: "AC",
       location: "Chennai",
-      price: 472,
+      rating: 4.5,
     },
     {
       id: 49,
       name: "Linda Anderson",
       service: "RO",
       location: "Hyderabad",
-      price: 572,
+      rating: 4.2,
     },
     {
       id: 50,
       name: "John Doe",
       service: "Cleaning",
       location: "Pune",
-      price: 1595,
+      rating: 4.1,
     },
 
     // Add more workers here...
@@ -405,10 +405,27 @@ export const Userdashboard = () => {
     { title: "Microwave Oven", description: "Microwave oven services." },
     { title: "Cleaning", description: "Home and office cleaning services." },
   ];
+  const getRatingValue = (rating) => {
+    switch (rating) {
+      case "more than 4.5":
+        return [4.5, 5];
+      case "more than 4.0":
+        return [4.0, 4.5];
+      case "more than 3.5":
+        return [3.5, 4.0];
+      default:
+        return [0, 5];
+    }
+  };
   const filteredWorkers = workers.filter((worker) => {
-    if (selectedService === "All Services") return true;
-    if (worker.service === selectedService) return true;
-    return false;
+    const [minRating, maxRating] = getRatingValue(selectedRating);
+
+    return (
+      (selectedService === "All Services" || worker.service === selectedService) &&
+      (selectedLocation === "Default" || worker.location === selectedLocation)&&
+      worker.rating >= minRating && worker.rating <= maxRating
+      
+    );
   });
   // Render different content based on the current section
   const renderContent = () => {
@@ -450,17 +467,16 @@ export const Userdashboard = () => {
                   <option value="Madurai">Madurai</option>
                   <option value="Chennai">Chennai</option>
                   <option value="Bangalore">Bangalore</option>
-                  {/* Add more locations here... */}
                 </select>
                 <select
-                  value={selectedPriceFilter}
-                  onChange={(e) => setSelectedPriceFilter(e.target.value)}
-            
-                >
-                  <option value="Default">By Price Filter</option>
-                  <option value="Low to High">Low to High</option>
-                  <option value="High to Low">High to Low</option>
-                </select>
+  value={selectedRating}
+  onChange={(e) => setSelectedRating(e.target.value)}
+>
+  <option value="Default">By Default</option>
+  <option value="more than 4.5">More than 4.5</option>
+  <option value="more than 4.0">More than 4.0</option>
+  <option value="more than 3.5">More than 3.5</option>
+</select>
               </div>
               <div className="services-grid-dash">
                 {filteredWorkers.map((worker, index) => (
@@ -469,7 +485,7 @@ export const Userdashboard = () => {
                     <h3>{worker.name}</h3>
                     <p>Service: {worker.service}</p>
                     <p>Location: {worker.location}</p>
-                    <p>Price: ₹{worker.price}</p>
+                    <p>Rating: {worker.rating}</p> 
                     <button onClick={() => handleBookService(worker)}>
                       Book Now
                     </button>
