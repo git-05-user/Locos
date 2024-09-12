@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
 import "./Userdashboard.css";
 export const Userdashboard = () => {
   const [bookedServices, setBookedServices] = useState([]); // New state for booked services
@@ -22,11 +23,26 @@ export const Userdashboard = () => {
     console.log(personalInfo);
   };
   const handleBookService = (service) => {
-    setBookedServices([...bookedServices, service]);
+    const newBookedServices = [...bookedServices, service];
+    setBookedServices(newBookedServices);
+    localStorage.setItem("bookedServices", JSON.stringify(newBookedServices));
+  };
+  useEffect(() => {
+    const storedBookedServices = localStorage.getItem("bookedServices");
+    if (storedBookedServices) {
+      const parsedBookedServices = JSON.parse(storedBookedServices);
+      setBookedServices(parsedBookedServices);
+    }
+  }, []);
+  const handleFinishService = (index) => {
+    const newBookedServices = [...bookedServices];
+    newBookedServices.splice(index, 1);
+    setBookedServices(newBookedServices);
+    localStorage.setItem("bookedServices", JSON.stringify(newBookedServices));
   };
   const [selectedService, setSelectedService] = useState("All Services"); // New state for selected service
   const [selectedLocation, setSelectedLocation] = useState("Default");
-  const [selectedRating, setSelectedRating ] = useState("Default");
+  const [selectedRating, setSelectedRating] = useState("Default");
   const [workers, setWorkers] = useState([
     // Sample worker data
     {
@@ -421,10 +437,12 @@ export const Userdashboard = () => {
     const [minRating, maxRating] = getRatingValue(selectedRating);
 
     return (
-      (selectedService === "All Services" || worker.service === selectedService) &&
-      (selectedLocation === "Default" || worker.location === selectedLocation)&&
-      worker.rating >= minRating && worker.rating <= maxRating
-      
+      (selectedService === "All Services" ||
+        worker.service === selectedService) &&
+      (selectedLocation === "Default" ||
+        worker.location === selectedLocation) &&
+      worker.rating >= minRating &&
+      worker.rating <= maxRating
     );
   });
   // Render different content based on the current section
@@ -439,6 +457,26 @@ export const Userdashboard = () => {
               <i class="fa-solid fa-circle-user"></i>
               <h3>{username}</h3>
             </div>
+            <h2 className="heading">Ongoing Works</h2>
+            <div className="ongoing-works">
+              {bookedServices.length > 0 ? (
+                bookedServices.map((service, index) => (
+                  <div className="booked-service-card" key={index}>
+                    <h3>{service.name}</h3>
+                    <p>Service: {service.service}</p>
+                    <p>Location: {service.location}</p>
+                    <p>Rating: {service.rating}</p>
+                    <button onClick={() => handleFinishService(index)}>
+                      Finished
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <div className="no-ongoing-works">
+                  <p>No ongoing works.</p>
+                </div>
+              )}
+            </div>
           </>
         );
       case "Services":
@@ -450,7 +488,6 @@ export const Userdashboard = () => {
                 <select
                   value={selectedService}
                   onChange={(e) => setSelectedService(e.target.value)}
-            
                 >
                   <option value="All Services">All Services</option>
                   {services.map((service, index) => (
@@ -464,33 +501,40 @@ export const Userdashboard = () => {
                   onChange={(e) => setSelectedLocation(e.target.value)}
                 >
                   <option value="Default">By Location</option>
+                  <option value="Near me">Near Me</option>
                   <option value="Madurai">Madurai</option>
                   <option value="Chennai">Chennai</option>
                   <option value="Bangalore">Bangalore</option>
                 </select>
                 <select
-  value={selectedRating}
-  onChange={(e) => setSelectedRating(e.target.value)}
->
-  <option value="Default">By Default</option>
-  <option value="more than 4.5">More than 4.5</option>
-  <option value="more than 4.0">More than 4.0</option>
-  <option value="more than 3.5">More than 3.5</option>
-</select>
+                  value={selectedRating}
+                  onChange={(e) => setSelectedRating(e.target.value)}
+                >
+                  <option value="Default">Ratings</option>
+                  <option value="more than 4.5">More than 4.5</option>
+                  <option value="more than 4.0">More than 4.0</option>
+                  <option value="more than 3.5">More than 3.5</option>
+                </select>
               </div>
               <div className="services-grid-dash">
-                {filteredWorkers.map((worker, index) => (
-                  <div className="worker-card" key={index}>
-                    <i class="fa-solid fa-circle-user"></i>
-                    <h3>{worker.name}</h3>
-                    <p>Service: {worker.service}</p>
-                    <p>Location: {worker.location}</p>
-                    <p>Rating: {worker.rating}</p> 
-                    <button onClick={() => handleBookService(worker)}>
-                      Book Now
-                    </button>
+                {filteredWorkers.length > 0 ? (
+                  filteredWorkers.map((worker, index) => (
+                    <div className="worker-card" key={index}>
+                      <i class="fa-solid fa-circle-user"></i>
+                      <h3>{worker.name}</h3>
+                      <p>Service: {worker.service}</p>
+                      <p>Location: {worker.location}</p>
+                      <p>Rating: {worker.rating}</p>
+                      <button onClick={() => handleBookService(worker)}>
+                        Book Now
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <div className="no-results">
+                    <p>No results found.</p>
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </>
