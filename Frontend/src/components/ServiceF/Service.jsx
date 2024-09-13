@@ -2,6 +2,20 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import "./Service.css"
 export const Service = () => {
+  const services = [
+    { name: "Electrical", description: "Reliable electrical services for installations and repairs." },
+    { name: "Plumbing", description: "Expert plumbing services for residential and commercial needs." },
+    { name: "Installation", description: "Professional installation services for all types of equipment." },
+    { name: "Maintenance", description: "Regular maintenance services to keep your equipment running smoothly." },
+    { name: "Television", description: "Television repair and installation services." },
+    { name: "System", description: "Computer system repair and maintenance services." },
+    { name: "AC", description: "Air conditioning installation and repair services." },
+    { name: "RO", description: "RO water purifier installation and maintenance services." },
+    { name: "Washing Machine", description: "Washing machine repair and maintenance services." },
+    { name: "Refrigerator", description: "Refrigerator repair and maintenance services." },
+    { name: "Microwave Oven", description:"Microwave Oven repair and maintenance services."},
+    {name: "Cleaning",description:"Professional cleaning services for homes and offices."},
+  ]
   return (
     <>
     {/* Header Section */}
@@ -29,12 +43,8 @@ export const Service = () => {
                 Contact us
               </a>
             </li>
-            {/* <li id="profile">
-              <i class="fa-solid fa-circle-user"></i>
-            </li> 
-            */}
             <li>
-              <Link to="/login">
+              <Link to="/userlogin">
                 <button id="login-btn">Login</button>
               </Link>
             </li>
@@ -43,70 +53,17 @@ export const Service = () => {
       </header>
       {/* hero section */}
       <div className="services-page">
-      <h1>Our Services</h1>
-      <div className="services-grid">
-        <div className="service-card">
-          <h2>Electrical</h2>
-          <p>Reliable electrical services for installations and repairs.</p>
-          <button>Book Now</button>
-        </div>
-        <div className="service-card">
-          <h2>Plumbing</h2>
-          <p>Expert plumbing services for residential and commercial needs.</p>
-          <button>Book Now</button>
-        </div>
-        <div className="service-card">
-          <h2>Installation</h2>
-          <p>Professional installation services for all types of equipment.</p>
-          <button>Book Now</button>
-        </div>
-        <div className="service-card">
-          <h2>Maintenance</h2>
-          <p>Regular maintenance services to keep your equipment running smoothly.</p>
-          <button>Book Now</button>
-        </div>
-        <div className="service-card">
-          <h2>Television</h2>
-          <p>Television repair and installation services.</p>
-          <button>Book Now</button>
-        </div>
-        <div className="service-card">
-          <h2>System</h2>
-          <p>Computer system repair and maintenance services.</p>
-          <button>Book Now</button>
-        </div>
-        <div className="service-card">
-          <h2>AC</h2>
-          <p>Air conditioning installation and repair services.</p>
-          <button>Book Now</button>
-        </div>
-        <div className="service-card">
-          <h2>RO</h2>
-          <p>RO water purifier installation and maintenance services.</p>
-          <button>Book Now</button>
-        </div>
-        <div className="service-card">
-          <h2>Washing Machine</h2>
-          <p>Washing machine repair and maintenance services.</p>
-          <button>Book Now</button>
-        </div>
-        <div className="service-card">
-          <h2>Refrigerator</h2>
-          <p>Refrigerator repair and maintenance services.</p>
-          <button>Book Now</button>
-        </div>
-        <div className="service-card">
-          <h2>Microwave Oven</h2>
-          <p>Microwave oven repair and maintenance services.</p>
-          <button>Book Now</button>
-        </div>
-        <div className="service-card">
-          <h2>Cleaning</h2>
-          <p>Professional cleaning services for homes and offices.</p>
-          <button>Book Now</button>
+        <h1>Our Services</h1>
+        <div className="services-grid">
+          {services.map((service, index) => (
+            <div className="service-card" key={index}>
+              <h2>{service.name}</h2>
+              <p>{service.description}</p>
+              <Link to="/userlogin"><button>Book Now</button></Link>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
      {/* footer section */}
      <footer id="footer">
         <div className="footer-content">

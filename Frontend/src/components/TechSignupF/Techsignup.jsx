@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Techsignup = () => {
   const [user,setUser] = useState([]);
+  const [username,setUserName] = useState('');
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
   const [confirmpassword,setConfirmPassword] = useState('');
@@ -44,8 +45,9 @@ export const Techsignup = () => {
     } 
  
     axios 
-      .post('http://localhost:8088/authorize/servicerregister', { email, password, phoneno,services,address, pincode }) 
+      .post('http://localhost:8088/authorize/servicerregister', { username,email, password, phoneno,services,address, pincode }) 
       .then(() => { 
+        setUserName('')
         setEmail('') 
         setPassword('') 
         //setConfirmPassword('') 
@@ -74,7 +76,7 @@ export const Techsignup = () => {
             <h1>Create an Account</h1>
             <label htmlFor="">UserName</label>
             <br />
-            <input type="text" required/> {/* Modified */}
+            <input type="text" value={username} onChange={(e)=> setUserName(e.target.value)} required/> {/* Modified */}
             <br />
             <label htmlFor="">Email Address</label>
             <br />

@@ -49,7 +49,7 @@ export const Techlogin = () => {
 
   const handleForgotPasswordSubmit = ()=> {
     axios
-    .post('http://localhost:8088/authorize/servicer-forgot-password/',{email:forgotEmail})
+    .post('http://localhost:8088/authorize/servicerForgotPassword/',{email:forgotEmail})
     .then( (res)=>{
       console.log('requested sent',res)
       alert('Email is Correct. Please Check your Email');

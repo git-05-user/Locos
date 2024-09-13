@@ -50,7 +50,7 @@ export const Userlogin = () => {
 
   const handleForgotPasswordSubmit = () =>{
     axios
-    .post('http://localhost/authorize/user-forgot-password',{forgotEmail})
+    .post('http://localhost:8088/authorize/userForgotPassword',{email:forgotEmail})
     .then( (res) => {
       alert('Email is Correct. Please Check Your Inbox')
       setShowPopup(false)

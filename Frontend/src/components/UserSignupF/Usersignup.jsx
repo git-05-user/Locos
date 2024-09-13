@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 export const Usersignup = () => {
 
   const [user, setUser] = useState([]) 
+  const [username,setUserName] = useState('')
   const [email, setEmail] = useState('') 
   const [password, setPassword] = useState('') 
   const [confirmpassword, setConfirmPassword] = useState('') 
@@ -43,8 +44,9 @@ export const Usersignup = () => {
     } 
  
     axios 
-      .post('http://localhost:8088/authorize/userregister', { email, password, address, pincode }) 
+      .post('http://localhost:8088/authorize/userregister', { username,email, password, address, pincode }) 
       .then(() => { 
+        setUserName('')
         setEmail('') 
         setPassword('') 
         //setConfirmPassword('') 
@@ -72,7 +74,7 @@ export const Usersignup = () => {
             <h1>Create an Account</h1>
             <label htmlFor="">UserName</label>
             <br />
-            <input type="text" required/> {/* Modified */}
+            <input type="text" value={username} onChange={(e)=> setUserName(e.target.value)} required/> {/* Modified */}
             <br />
             <label htmlFor="">Email Address</label>
             <br />

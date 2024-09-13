@@ -15,13 +15,13 @@ dotenv.config();
 //post register
 router.post('/userregister', async(req,res)=>{
     try{
-        const {email,password,address,pincode} = req.body
+        const {username,email,password,address,pincode} = req.body
         const emailCheck = await UserDetail.findOne({email})
         if(emailCheck){
            return res.status(404).json({message:'email address is already exists'})
         }
         const newUser = new UserDetail({
-            email,password,address,pincode
+            username,email,password,address,pincode
         })
         await newUser.save()
         res.status(201).json({message:'account created successfully'})
@@ -47,7 +47,7 @@ router.get('/userregister',async(req,res)=>{
 
 router.post('/userlogin', async(req,res)=>{
     try{
-        const {email,password,address,pincode} = req.body
+        const {email,password} = req.body
         const user = await UserDetail.findOne({email})
         if(!user || user.password!= password){
             return res.status(401).json({error:'Invalid credentials'})
@@ -64,13 +64,13 @@ router.post('/userlogin', async(req,res)=>{
 
 router.post('/servicerregister', async(req,res)=>{
     try{
-        const {email,password,phoneno,services,address,pincode} = req.body;
+        const {username,email,password,phoneno,services,address,pincode} = req.body;
         const emailCheck = await ServiceProvider.findOne({email})
         if(emailCheck){
             return res.status(404).json({message:'email address is already exists'})
         }
         const newServicer = new ServiceProvider({
-            email,password,phoneno,services,address,pincode
+            username,email,password,phoneno,services,address,pincode
         })
         await newServicer.save()
         res.status(201).json({message:'account created successfully'})
@@ -108,7 +108,7 @@ router.post('/servicerlogin', async(req,res)=>{
 })
 
 //FORGOT PASSWORD SENDING TO USER
-router.post('/user-forgot-password',async(req,res)=>{
+router.post('/userForgotPassword',async(req,res)=>{
 
 const email=req.body.email;
 try{
@@ -167,12 +167,12 @@ try{
 
 catch(err)
     {
-    return res.error(501).json({message:"Internal Error"});
+    return res.status(501).json({message:"Internal Error"});
     }
 });
 
 //FORGOT PASSWORD SENDING FOR SERVICER
-router.post('/servicer-forgot-password',async(req,res) => {
+router.post('/servicerForgotPassword',async(req,res) => {
 
     const {email} = req.body;
     // console.log('called')
@@ -233,5 +233,6 @@ catch(err)
     }
 
 });
+
 
 module.exports = router;
