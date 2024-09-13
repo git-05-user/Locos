@@ -10,8 +10,8 @@ const PORT =8088;
 const app = express()
 
 //middle ware
-app.use(bodyParser.json())
-app.use(cors())
+app.use(bodyParser.json());
+app.use(cors());
 app.use('/authorize',authRoute)
 
 //connect to mongodb

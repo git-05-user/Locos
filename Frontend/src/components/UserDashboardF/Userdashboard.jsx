@@ -6,10 +6,10 @@ export const Userdashboard = () => {
   const [bookedServices, setBookedServices] = useState([]); // New state for booked services
   const [currentSection, setCurrentSection] = useState("Dashboard");
   const [personalInfo, setPersonalInfo] = useState({
-    name: "CharanGuru",
-    address: "Keelamasi veethi, Madurai, TamilNadu",
+    name: "Sivanesh",
+    address: "Panaiyur",
     pincode: "625009",
-    email: "charanguru04@gmail.com",
+    email: "22suit15@tcarts.in",
   });
   const [username, setUsername] = useState(personalInfo.name); // New state for username
   const handlePersonalInfoChange = (event) => {

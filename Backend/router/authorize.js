@@ -161,7 +161,7 @@ try{
    
 
     await Transport.sendMail(send);
-    return res.status(200).json({message:"Password is send to successfully"});
+    return res.status(200).json({message:"Password is send successfully"});
 
 }
 
@@ -174,7 +174,8 @@ catch(err)
 //FORGOT PASSWORD SENDING FOR SERVICER
 router.post('/servicer-forgot-password',async(req,res) => {
 
-    const email = req.body.email;
+    const {email} = req.body;
+    // console.log('called')
 try{
     //find the servicer by email
     const servicer = await ServiceProvider.findOne({email:email});
