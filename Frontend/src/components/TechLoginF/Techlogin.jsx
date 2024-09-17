@@ -20,7 +20,7 @@ export const Techlogin = () => {
  
   const fetchUsers = () =>{ 
     axios 
-    .get('http://localhost:8088/authorize/servicerregister') 
+    .get('http://localhost:8088/techauthorize/servicerregister') 
     .then((res)=>{ 
       console.log(res.data) 
     }) 
@@ -29,15 +29,15 @@ export const Techlogin = () => {
   const handleLogin = async (event) => { 
     event.preventDefault(); 
     try{ 
-    const response = await axios.post('http://localhost:8088/authorize/servicerlogin',{email,password}) 
+    const response = await axios.post('http://localhost:8088/techauthorize/servicerlogin',{email,password}) 
     const token = response.data.token 
     alert('Login successful') 
     setEmail('') 
     setPassword('') 
     fetchUsers(); 
-    navigate('/techdashboard') 
-    window.location.reload() 
-    localStorage.setItem('token',token) 
+    navigate('/techdashboard');
+    window.location.reload();
+    localStorage.setItem('token',token);
     } 
     catch(error){ 
       alert('login error') 
@@ -49,7 +49,7 @@ export const Techlogin = () => {
 
   const handleForgotPasswordSubmit = ()=> {
     axios
-    .post('http://localhost:8088/authorize/servicerForgotPassword/',{email:forgotEmail})
+    .post('http://localhost:8088/techauthorize/servicerForgotPassword/',{email:forgotEmail})
     .then( (res)=>{
       console.log('requested sent',res)
       alert('Email is Correct. Please Check your Email');

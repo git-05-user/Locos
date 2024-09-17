@@ -16,6 +16,7 @@ export const Techsignup = () => {
   const [services,setServices] = useState("electrical");
   const [address,setAddress] = useState('');
   const [pincode,setPincode] = useState('');
+  const [error,setError] = useState('');
   const navigate = useNavigate();
 
   //to display all acconts in DB 
@@ -26,7 +27,7 @@ export const Techsignup = () => {
   //axios connection  
   const fetchUsers = () => { 
     axios 
-      .get('http://localhost:8088/authorize/servicerregister') 
+      .get('http://localhost:8088/techauthorize/servicerregister') 
       .then((res) => { 
         console.log(res.data) 
       }) 
@@ -38,14 +39,17 @@ export const Techsignup = () => {
   //post records on DB 
   const handleRegister = (event) => { 
     event.preventDefault() 
- 
+
+    if(password.length < 8 || password.length > 16){
+      setError('Password must be between 8 and 16 characters.')
+      return
+    }
     if (password !== confirmpassword) { 
       alert("Passwords doesn't match!"); 
       return; 
     } 
- 
     axios 
-      .post('http://localhost:8088/authorize/servicerregister', { username,email, password, phoneno,services,address, pincode }) 
+      .post('http://localhost:8088/techauthorize/servicerregister', { username,email, password, phoneno,services,address, pincode }) 
       .then(() => { 
         setUserName('')
         setEmail('') 
@@ -55,6 +59,7 @@ export const Techsignup = () => {
         setServices('')
         setAddress('') 
         setPincode('') 
+        setError('')
         alert('Registraion is successful') 
         fetchUsers() 
         navigate('/techlogin') 
@@ -84,7 +89,7 @@ export const Techsignup = () => {
             <br />
             <label htmlFor="">Password</label>
             <br />
-            <input type="password" value={password} onChange={(e)=> setPassword(e.target.value)} required />
+            <input type="password" value={password} onChange={(e)=> setPassword(e.target.value)}  minLength="8" maxLength="16"  required />
             <br />
             <label htmlFor="">Confirm Password</label>
             <br />
