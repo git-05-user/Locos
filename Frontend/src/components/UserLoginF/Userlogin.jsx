@@ -13,6 +13,7 @@ export const Userlogin = () => {
   const navigate = useNavigate(); 
   const [showPopup,setShowPopup] = useState(false);
   const [forgotEmail,setForgotEmail]= useState('');
+  const [username,setUserName] = useState('');
  
   useEffect( () => { 
     fetchUsers(); 
@@ -20,7 +21,7 @@ export const Userlogin = () => {
  
   const fetchUsers = () =>{ 
     axios 
-    .get('http://localhost:8088/authorize/userregister') 
+    .get('http://localhost:8088/userauthorize/userregister') 
     .then((res)=>{ 
       console.log(res.data) 
     }) 
@@ -29,18 +30,24 @@ export const Userlogin = () => {
   const handleLogin = async (event) => { 
     event.preventDefault(); 
     try{ 
-    const response = await axios.post('http://localhost:8088/authorize/userlogin',{email,password}) 
-    const token = response.data.token 
+    const response = await axios.post('http://localhost:8088/userauthorize/userlogin',{email,password}) 
+    // const token = response.data.token 
+    const token = response.data.token;
+    if(response.data){
+      setUserName(response.data.username);
+    }
     alert('Login successful') 
     setEmail('') 
     setPassword('') 
     fetchUsers(); 
-    navigate('/userdashboard') 
-    window.location.reload() 
     localStorage.setItem('token',token) 
+    localStorage.setItem('username',sivanesh);
+    navigate('/userdashboard')
+    window.location.reload() 
     } 
     catch(error){ 
-      alert('login error') 
+      alert('Invalid credentials') 
+      console.log('Error Message',error)
     } 
   }
 
@@ -50,7 +57,7 @@ export const Userlogin = () => {
 
   const handleForgotPasswordSubmit = () =>{
     axios
-    .post('http://localhost:8088/authorize/userForgotPassword',{email:forgotEmail})
+    .post('http://localhost:8088/userauthorize/userForgotPassword',{email:forgotEmail})
     .then( (res) => {
       alert('Email is Correct. Please Check Your Inbox')
       setShowPopup(false)

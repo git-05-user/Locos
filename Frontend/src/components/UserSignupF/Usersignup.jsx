@@ -15,6 +15,7 @@ export const Usersignup = () => {
   const [confirmpassword, setConfirmPassword] = useState('') 
   const [address, setAddress] = useState('') 
   const [pincode, setPincode] = useState('') 
+  const [error,setError] = useState('')
   const navigate = useNavigate() 
  
   //to display all acconts in DB 
@@ -25,7 +26,7 @@ export const Usersignup = () => {
   //axios connection  
   const fetchUsers = () => { 
     axios 
-      .get('http://localhost:8088/authorize/userregister') 
+      .get('http://localhost:8088/userauthorize/userregister') 
       .then((res) => { 
         console.log(res.data) 
       }) 
@@ -44,7 +45,7 @@ export const Usersignup = () => {
     } 
  
     axios 
-      .post('http://localhost:8088/authorize/userregister', { username,email, password, address, pincode }) 
+      .post('http://localhost:8088/userauthorize/userregister', { username,email, password, address, pincode }) 
       .then(() => { 
         setUserName('')
         setEmail('') 
