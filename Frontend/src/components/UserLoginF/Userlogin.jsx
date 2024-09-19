@@ -13,7 +13,7 @@ export const Userlogin = () => {
   const navigate = useNavigate(); 
   const [showPopup,setShowPopup] = useState(false);
   const [forgotEmail,setForgotEmail]= useState('');
-  const [username,setUserName] = useState('');
+  // const [username,setUserName] = useState('');
  
   useEffect( () => { 
     fetchUsers(); 
@@ -32,18 +32,21 @@ export const Userlogin = () => {
     try{ 
     const response = await axios.post('http://localhost:8088/userauthorize/userlogin',{email,password}) 
     // const token = response.data.token 
-    const token = response.data.token;
-    if(response.data){
-      setUserName(response.data.username);
-    }
+    //const token = response.data.token;
+    // if(response.data){
+    //   setUserName(response.data.username);
+    // }
+    .then((res)=>{
     alert('Login successful') 
     setEmail('') 
     setPassword('') 
     fetchUsers(); 
-    localStorage.setItem('token',token) 
-    localStorage.setItem('username',sivanesh);
-    navigate('/userdashboard')
+    // localStorage.setItem('token',token) 
+    // localStorage.setItem('username',sivanesh);
+    const usname = res.data.username;
+    navigate('/userdashboard',{state:usname})
     window.location.reload() 
+  })
     } 
     catch(error){ 
       alert('Invalid credentials') 

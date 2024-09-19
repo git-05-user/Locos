@@ -38,7 +38,9 @@ export const Usersignup = () => {
   //post records on DB 
   const handleRegister = (event) => { 
     event.preventDefault() 
- 
+    if (password.length < 8 || password.length > 16) {
+      return res.status(400).json({ message: 'Password must be between 8 and 16 characters.' });
+  }
     if (password !== confirmpassword) { 
       alert("Passwords doesn't match!"); 
       return; 
